@@ -128,7 +128,7 @@ body{
     height: 2px;
     width: 100%;
     opacity: 0;
-    background: #17a2b8;
+    background: #d0efff;
     animation: blink 1s ease-in-out infinite;
 }
 
@@ -139,7 +139,8 @@ body{
 }
 
 .typing-text p span.active{
-    color: #17a2b8;
+    background: #d0efff;
+    border-radius: 4px;
 }
 
 
