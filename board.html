@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>tkt typing game</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="board.css">
+</head>
+<body>
+    <div class="wrapper" id="wrapper">
+        <div class="title">
+            <h1>Leaderboard</h1>
+        </div>
+        <div class="board">
+            <div class="header">
+                <div class="Rank">Rank</div>
+                <div class="User">User</div>
+                <div class="Wpm">WPM</div>
+                <div class="Cpm">CPM</div>
+                <div class="Mistake">Mistake</div>
+            </div>
+            <div class="content">
+            </div>
+            <div class="back">
+                <button onclick="back()">return</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
+    <script type="text/javascript" src="./database.js"></script>
+</body>
+</html>
