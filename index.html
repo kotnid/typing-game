@@ -10,10 +10,11 @@
             <input type="text" class="input-field">
             <div class="title">
                 <h1>tkt typign game</h1>
+                <button class="result-button" , onclick="result()">Board</button>
             </div>
             <div class="content-box">
                 <div class="typing-text">
-                    <p></p>
+                    <p>Loading...</p>
                 </div>
                 <div class="content">
                     <ul class="result-details">
@@ -58,13 +59,15 @@
                 </ul>
             </div>
             <div class="right">
-                <h5>Type your name here!</h5>
+                <h5>How can we call you?</h5>
                 <input type="text" class="name-field">
-                <button class="board-button">X</button>
+                <button class="board-button" onclick="result2()">board</button>
                 <button class="return-button">return</button>
             </div>
             </div>
         </div>
+        <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
 
         <script src="pharagpraph.js"></script>
         <script src="script.js"></script>
