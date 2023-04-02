@@ -47,7 +47,7 @@ body{
 .content{
     width: 100%;
     height: 60%;
-    margin-top: 1%;
+    margin-top: 1.5%;
     overflow-y: auto;
 }
 
@@ -58,11 +58,13 @@ body{
 .row{
     display: flex;
     height: 8%;
-    margin-bottom: 1%;
+    margin-bottom: 0.8%;
     padding: 2%;
     border-radius: 30px;    
     align-items: center;
     border: 1px solid #ccc;
+    background-color: #F5F5F5;
+    padding-right: 0%;
 }
 
 .Rank , .User , .Wpm , .Cpm , .Mistake{
@@ -70,6 +72,10 @@ body{
     font-size: 25px;
     width: 20%;
     font-weight: 500;
+}
+
+.User{
+    width: 40%;
 }
 
 .Rank{
