@@ -110,3 +110,7 @@ body{
 .back button:active{
     transform: scale(0.8);
 }
+
+button:hover {
+    transform: scale(1.1);
+}
