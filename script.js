@@ -9,13 +9,17 @@ const returnBtn = document.querySelector(".return-button");
 const nameField = document.querySelector(".name-field");
 const popup = document.querySelector(".popup")
 
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig)
+const db = firebase.firestore()
+
 const paragraph_api = "http://metaphorpsum.com/sentences/25"
 
 let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 2;
+maxTime = 60;
 timeLeft = maxTime;
 
 let playing = false;
@@ -45,7 +49,6 @@ function randomParagraph(){
 async function randomParagraph2(){
     typingText.innerHTML = "";
     const pharagraph = await getRandomParagraph();
-    console.log(pharagraph)
     pharagraph.split("").forEach(span => {
         let spanTag = `<span>${span}</span>`;
         typingText.innerHTML += spanTag;
@@ -146,15 +149,41 @@ function endGame(){
 }
 
 function reset2(){
+    let wpm = Math.round(((idx2-mistakes)/5 )/ (maxTime-timeLeft)*60);
+    wpm = wpm <0 || !wpm || wpm === Infinity ? 0 : wpm;
+
+    db.collection("test").add({
+        name : nameField.value,
+        wpm : wpm,
+        cpm : idx2-mistakes,
+        mistakes : mistakes,
+    });
     document.removeEventListener("keydown" , () => nameField.focus());
     reset();
     document.querySelector(".popup-content").classList.remove("open-popup-content");
     popup.classList.remove("open-popup");
+    nameField.value = "";
+}
+
+function result2(){
+    let wpm = Math.round(((idx2-mistakes)/5 )/ (maxTime-timeLeft)*60);
+    wpm = wpm <0 || !wpm || wpm === Infinity ? 0 : wpm;
+
+    db.collection("test").add({
+        name : nameField.value,
+        wpm : wpm,
+        cpm : idx2-mistakes,
+        mistakes : mistakes,
+    }).then(()=>{window.location.href = "board.html";});
+}
+
+function result(){
+    window.location.href = "board.html";
 }
 
 inpField.addEventListener("input",initTyping);
 tryAgainBtn.addEventListener("click" ,reset);
 returnBtn.addEventListener("click" ,reset2);
-randomParagraph();
 
+randomParagraph();
 //randomParagraph2();
