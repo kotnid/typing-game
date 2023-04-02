@@ -14,6 +14,19 @@
 2. 1v1 function (who wants to play 1v1 in a typing game lol)
 3. mods in game (DT/HD/HR) - yea osu
 
+## What is firebase-config.js ##
+- confidential
+```
+const firebaseConfig = {
+    apiKey: {apiKey},
+    authDomain: {authDomain},
+    projectId: {ProjectId},
+    storageBucket: {storageBucket},
+    messagingSenderId: {messagingSenderId},
+    appId: {appId}
+};
+``` 
+
 ## Credit ##
 - HKOI 2023 mini comp2 (which push me back to write website xd)
 - firestore
