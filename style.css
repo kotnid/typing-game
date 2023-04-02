@@ -31,7 +31,12 @@ body{
 .wrapper .title{
     padding: 0 20px 0;
     justify-content: center;
+    display: flex;
 }
+
+.title button.result-button {
+    margin-left: auto;
+  }
 
 /* CSS for input field */
 .wrapper .input-field{
@@ -81,7 +86,7 @@ body{
 
 /* CSS for button */
 
-.content button{
+.content button , .result-button{
     border: none;
     outline: none;
     border: 1px solid #ccc;
@@ -93,7 +98,7 @@ body{
     transition: transform 0.3s ease;
 }
 
-.content button:active{
+.content button:active , .result-button:active{
     transform: scale(0.8);
 }
 
@@ -101,6 +106,7 @@ body{
 
 .typing-text p span{
     position: relative;
+    /* white-space: nowrap; */
 }
 
 .typing-text p span.correct{
@@ -147,7 +153,6 @@ body{
     line-height: 1.6;
     text-align: justify;
     letter-spacing: 1px;
-    word-break: break-all;
     padding: 1%;
 }
 
@@ -180,7 +185,7 @@ body{
   
   .open-popup {
     visibility: visible;
-    animation: expand 2s ease forwards;
+    animation: expand 1s ease forwards;
     box-shadow: 0 0 0 100vmax rgba(0,0,0,.3);
   }
   
@@ -192,7 +197,7 @@ body{
 }
 
 .open-popup-content{
-    animation: expand2 2.3s ease forwards;
+    animation: expand2 1.2s ease forwards;
 }
 
 /* .reverse {
