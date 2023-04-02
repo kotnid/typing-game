@@ -24,6 +24,8 @@ timeLeft = maxTime;
 
 let playing = false;
 
+let nxtline = 0;
+
 function getRandomParagraph(){
     return fetch(paragraph_api)
     .then(response => response.text())
@@ -89,7 +91,17 @@ function initTyping(){
             }
             characters[idx2].classList.remove("correct" , "incorrect");
         }
+        
+        if (idx2 != 0 && characters[idx2-1].offsetTop !== characters[idx2].offsetTop) {
+            nxtline++;
+        }
 
+        if(nxtline == 3){
+            nxtline--;
+            const lineHeight = parseInt(getComputedStyle(typingText).lineHeight);
+            scrollTopAnimated(document.querySelector(".typing-text").scrollTop+lineHeight,500);
+        }
+        
         characters[idx2].classList.add("active");
         mistakeTag.innerText = mistakes;
     }else{
@@ -127,9 +139,10 @@ function reset(){
     playing = false;
     wpmTag.innerText = 0;
     cpmTag.innerText = 0;
+    nxtline = 0;
     mistakeTag.innerText = 0;
     timeTag.innerHTML = maxTime;
-    document.querySelector(".typing-text").scrollTop = 0;
+    scrollTopAnimated(0,1000);
 }
 
 function endGame(){
@@ -187,3 +200,8 @@ returnBtn.addEventListener("click" ,reset2);
 
 randomParagraph();
 //randomParagraph2();
+
+function scrollTopAnimated(dist,dura) {
+    $(".typing-text").animate(
+        { scrollTop: dist }, dura);
+}
