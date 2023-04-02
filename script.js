@@ -36,7 +36,7 @@ function initTyping(){
 
     if(timeLeft > 0 && idx2 < characters.length -1){
         if(!playing){
-            timer = setInterval(initTimer , 1000);
+            timer = setInterval(initTimer , 100);
             playing = true;
         }
 
@@ -70,8 +70,8 @@ function initTyping(){
 
 function initTimer(){
     if(timeLeft > 0){
-        timeLeft--;
-        timeTag.innerText = timeLeft;
+        timeLeft -=0.1;
+        timeTag.innerText = Math.floor(timeLeft);
 
         let wpm = Math.round(((idx2-mistakes)/5 )/ (maxTime-timeLeft)*60);
         wpm = wpm <0 || !wpm || wpm === Infinity ? 0 : wpm;
