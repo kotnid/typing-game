@@ -204,4 +204,16 @@ randomParagraph();
 function scrollTopAnimated(dist,dura) {
     $(".typing-text").animate(
         { scrollTop: dist }, dura);
-}
+};
+
+function getRandomColor() {
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+    return `rgb(${red}, ${green}, ${blue})`;
+};
+
+document.querySelector(".title h1").addEventListener("click", function() {
+    const randomColor = getRandomColor();
+    document.querySelector(".title h1").style.color = randomColor;
+});

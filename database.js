@@ -118,6 +118,7 @@ getBoard();
 const wpm = document.querySelector(".Wpm");
 const cpm = document.querySelector(".Cpm");
 const mistake = document.querySelector(".Mistake");
+const user = document.querySelector(".User");
 
 wpm.addEventListener("click", function() {
     window.location.href = "board.html?sortby=wpm";
@@ -129,4 +130,8 @@ cpm.addEventListener("click", function() {
 
 mistake.addEventListener("click", function() {
     window.location.href = "board.html?sortby=mistakes";
+});
+
+user.addEventListener("click", function() {
+    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 });
