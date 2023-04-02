@@ -6,6 +6,8 @@ const wpmTag = document.querySelector(".wpm span");
 const cpmTag = document.querySelector(".cpm span");
 const tryAgainBtn = document.querySelector(".try-button");
 
+const paragraph_api = "http://metaphorpsum.com/sentences/25"
+
 let idx2 = 0;
 let mistakes = 0;
 
@@ -15,11 +17,33 @@ timeLeft = maxTime;
 
 let playing = false;
 
+function getRandomParagraph(){
+    return fetch(paragraph_api)
+    .then(response => response.text())
+    .then(data => {return data;})
+}
+
+
 // generate pharagraph
 function randomParagraph(){
     typingText.innerHTML = "";
     let idx = Math.floor(Math.random() * pharagraphs.length);
     pharagraphs[idx].split("").forEach(span => {
+        let spanTag = `<span>${span}</span>`;
+        typingText.innerHTML += spanTag;
+    })
+
+    document.addEventListener("keydown" , () => inpField.focus());
+    typingText.addEventListener("click" , () => inpField.focus());
+    typingText.querySelectorAll("span")[0].classList.add("active");
+}
+
+//generate paragraph by api
+async function randomParagraph2(){
+    typingText.innerHTML = "";
+    const pharagraph = await getRandomParagraph();
+    console.log(pharagraph)
+    pharagraph.split("").forEach(span => {
         let spanTag = `<span>${span}</span>`;
         typingText.innerHTML += spanTag;
     })
@@ -100,3 +124,5 @@ function reset(){
 inpField.addEventListener("input",initTyping);
 tryAgainBtn.addEventListener("click" ,reset);
 randomParagraph();
+
+//randomParagraph2();
