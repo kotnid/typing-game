@@ -119,6 +119,7 @@ function reset(){
     cpmTag.innerText = 0;
     mistakeTag.innerText = 0;
     timeTag.innerHTML = maxTime;
+    document.querySelector(".typing-text").scrollTop = 0;
 }
 
 inpField.addEventListener("input",initTyping);
