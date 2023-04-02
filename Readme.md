@@ -15,5 +15,6 @@
 3. mods in game (DT/HD/HR) - yea osu
 
 ## Credit ##
+- HKOI 2023 mini comp2 (which push me back to write website xd)
 - firestore
 - [CSS basically follow this video to do lol](https://www.youtube.com/watch?v=Hg80AjDNnJk)

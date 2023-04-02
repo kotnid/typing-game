@@ -122,7 +122,7 @@ body{
 
 .typing-text p span.active::before{
     content: "";
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     bottom: 0;
     height: 2px;
