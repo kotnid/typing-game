@@ -6,6 +6,9 @@
     font-family: "Inter";
 }
 
+html{
+    background: black;
+}
 
 body{
     display: flex;
@@ -158,3 +161,128 @@ body{
 .typing-text::-webkit-scrollbar{
     width: 0;
 }
+
+/* CSS for popup */
+.popup {
+    width: 30%;
+    height: 40%;
+    background-color: #E1E1F0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    border: 0px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    visibility: hidden;
+  }
+  
+  .open-popup {
+    visibility: visible;
+    animation: expand 2s ease forwards;
+    box-shadow: 0 0 0 100vmax rgba(0,0,0,.3);
+  }
+  
+.popup-content{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.open-popup-content{
+    animation: expand2 2.3s ease forwards;
+}
+
+/* .reverse {
+    animation-direction: reverse;
+} */
+
+@keyframes expand2 {
+    0% {
+      opacity: 0;
+    }
+    80% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes expand {
+    0% {
+      width: 1%;
+      height: 1%;
+      transform: translateX(0vw);
+    }
+    50% {
+      width: 1%;
+      height: 40%;
+      transform: translateX(0vw);
+    }
+    100% {
+      width: 30%;
+      height: 40%;
+      transform: translateX(-15vw);
+    }
+    /* animation-timing-function: linear; */
+  }
+
+
+  .left , .right {
+    width: 50%;
+    height: 100%;
+}
+
+.left{
+    border-right: 1px solid #ccc;
+    align-items: center;
+    position: relative;
+}
+
+.right h5{
+    font-size: 25px;
+    padding-top: 10%;
+}
+
+.result{
+    padding-top: 4%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.result li{
+    list-style-type: none;
+    align-items: stretch;
+    justify-content: center;
+    margin-bottom: 30%;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.name-field{
+    margin-top: 10%;
+    padding: 8px 14px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+.right button{
+    border: none;
+    outline: none;
+    border: 1px solid #ccc;
+    background: none;
+    padding: 12px 0;
+    width: 105px;
+    border-radius: 5px;
+    font-weight: 700;
+    display: block;
+    margin-top: 10%;
+    margin-left: 25%;
+} 

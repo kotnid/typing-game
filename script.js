@@ -5,6 +5,9 @@ const timeTag = document.querySelector(".time span b");
 const wpmTag = document.querySelector(".wpm span");
 const cpmTag = document.querySelector(".cpm span");
 const tryAgainBtn = document.querySelector(".try-button");
+const returnBtn = document.querySelector(".return-button");
+const nameField = document.querySelector(".name-field");
+const popup = document.querySelector(".popup")
 
 const paragraph_api = "http://metaphorpsum.com/sentences/25"
 
@@ -12,7 +15,7 @@ let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 60;
+maxTime = 2;
 timeLeft = maxTime;
 
 let playing = false;
@@ -104,12 +107,16 @@ function initTimer(){
         wpmTag.innerText = wpm;
     }else{
         clearInterval(timer);
+        endGame();
     }
 }
 
 function reset(){
     clearInterval(timer);
     randomParagraph();
+    document.addEventListener("keydown" , () => inpField.focus());
+    inpField.addEventListener("input",initTyping);
+    typingText.addEventListener("click" , () => inpField.focus());
     inpField.value = "";
     idx2 = 0;
     mistakes = 0;  
@@ -122,8 +129,32 @@ function reset(){
     document.querySelector(".typing-text").scrollTop = 0;
 }
 
+function endGame(){
+    document.removeEventListener("keydown" , () => inpField.focus());
+    inpField.removeEventListener("input",initTyping);
+    typingText.removeEventListener("click" , () => inpField.focus());
+    document.addEventListener("keydown" , () => nameField.focus());
+    popup.classList.add("open-popup");
+    document.querySelector(".popup-content").classList.add("open-popup-content");
+    
+    document.querySelector(".mistake2 span").innerText = mistakes;
+    let wpm = Math.round(((idx2-mistakes)/5 )/ (maxTime-timeLeft)*60);
+    wpm = wpm <0 || !wpm || wpm === Infinity ? 0 : wpm;
+    
+    document.querySelector(".cpm2 span").innerText = idx2 - mistakes;
+    document.querySelector(".wpm2 span").innerText = wpm;
+}
+
+function reset2(){
+    document.removeEventListener("keydown" , () => nameField.focus());
+    reset();
+    document.querySelector(".popup-content").classList.remove("open-popup-content");
+    popup.classList.remove("open-popup");
+}
+
 inpField.addEventListener("input",initTyping);
 tryAgainBtn.addEventListener("click" ,reset);
+returnBtn.addEventListener("click" ,reset2);
 randomParagraph();
 
 //randomParagraph2();
