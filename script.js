@@ -14,7 +14,7 @@ const chart = document.querySelector(".chart");
 firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 
-const paragraph_api = "http://metaphorpsum.com/sentences/25"
+const paragraph_api = "https://baconipsum.com/api/?type=all-meat&sentences=25"
 
 let idx2 = 0;
 let mistakes = 0;
@@ -32,8 +32,8 @@ let yValues = [];
 
 function getRandomParagraph(){
     return fetch(paragraph_api)
-    .then(response => response.text())
-    .then(data => {return data;})
+    .then(response => response.json())
+    .then(data => {return data[0];})
 }
 
 
@@ -69,8 +69,9 @@ async function randomParagraph2(){
     const url = new URL(window.location);
     const mode = url.searchParams.get('mode');
 
-    typingText.innerHTML = "";
+   
     const pharagraph = await getRandomParagraph();
+    typingText.innerHTML = "";
     pharagraph.split("").forEach(span => {
         if(mode == "rotate"){
             if(span == " "){
