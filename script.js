@@ -19,7 +19,7 @@ let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 60;
+maxTime = 6;
 timeLeft = maxTime;
 
 let playing = false;
@@ -217,9 +217,27 @@ function result(){
     window.location.href = "board.html";
 }
 
+function test2(){
+    if(nameField.value == ""){
+        nameField.style.borderColor = "#cb3439";
+    }else{
+        nameField.style.borderColor = "#ccc";
+        result2();
+    }
+}
+
+function test1(){
+    if(nameField.value == ""){
+        nameField.style.borderColor = "#cb3439";
+    }else{
+        nameField.style.borderColor = "#ccc";
+        reset2();
+    }
+}
+
 inpField.addEventListener("input",initTyping);
 tryAgainBtn.addEventListener("click" ,reset);
-returnBtn.addEventListener("click" ,reset2);
+returnBtn.addEventListener("click" ,test1);
 
 randomParagraph();
 //randomParagraph2();
