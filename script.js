@@ -20,7 +20,7 @@ let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 60;
+maxTime = 20;
 timeLeft = maxTime;
 
 let playing = false;
@@ -153,8 +153,10 @@ function initTimer(){
         cpmTag.innerText = idx2 - mistakes;
         wpmTag.innerText = wpm;
         // console.log(wpm);
-        xValues.push((maxTime-timeLeft).toFixed(2));
-        yValues.push(wpm);
+        if (timeLeft <= maxTime-0.5){
+            xValues.push((maxTime-timeLeft).toFixed(2));
+            yValues.push(wpm);
+        }
 
         if(timeLeft <= 10){
             timeTag.style.color = "#cb3439";
@@ -190,8 +192,19 @@ function reset(){
 }
 
 function endGame(){
-    chart_ele.data.datasets[0].data = yValues;
-    chart_ele.data.labels = xValues;
+    let newY = [];
+    let newX = [];
+
+    for(let i=0 ; i<yValues.length ; i+=5){
+        newY.push(yValues[i]);
+    }
+
+    for(let i=0 ; i<xValues.length ; i+=5){
+        newX.push(xValues[i]);
+    }
+
+    chart_ele.data.datasets[0].data = newY;
+    chart_ele.data.labels = newX;
     chart_ele.update();
 
     chart.classList.add("open-chart");
@@ -325,5 +338,6 @@ let chart_ele = new  Chart("myChart",{
     options: {
         legend: {display: false},
         maintainAspectRatio: false,
+        spanGaps: true 
     }
 });
