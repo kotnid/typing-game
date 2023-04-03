@@ -291,7 +291,14 @@ document.querySelector(".title h1").addEventListener("click", function() {
 });
 
 document.querySelector(".rotate-button").addEventListener("click", function() {
-    window.location.href = "index.html?mode=rotate";
+    const url = new URL(window.location);
+    const mode = url.searchParams.get('mode');
+
+    if(mode == "rotate"){
+        window.location.href = "index.html";
+    }else{
+        window.location.href = "index.html?mode=rotate";
+    }
 });
 
 
