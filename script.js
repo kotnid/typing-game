@@ -66,11 +66,24 @@ function randomParagraph(){
 
 //generate paragraph by api
 async function randomParagraph2(){
+    const url = new URL(window.location);
+    const mode = url.searchParams.get('mode');
+    
     typingText.innerHTML = "";
     const pharagraph = await getRandomParagraph();
     pharagraph.split("").forEach(span => {
-        let spanTag = `<span class="span-rotate">${span}</span>`;
-        typingText.innerHTML += spanTag;
+        if(mode == "rotate"){
+            if(span == " "){
+                let spanTag = `<span class="space">${span}</span>`;
+                typingText.innerHTML += spanTag;
+            }else{
+                let spanTag = `<span class="span-rotate">${span}</span>`;
+                typingText.innerHTML += spanTag;
+            }   
+        }else{
+            let spanTag = `<span>${span}</span>`;
+            typingText.innerHTML += spanTag;
+        }
     })
 
     document.addEventListener("keydown" , () => inpField.focus());
@@ -171,7 +184,7 @@ function initTimer(){
 
 function reset(){
     clearInterval(timer);
-    randomParagraph();
+    randomParagraph2();
     document.addEventListener("keydown" , () => inpField.focus());
     inpField.addEventListener("input",initTyping);
     typingText.addEventListener("click" , () => inpField.focus());
@@ -297,9 +310,9 @@ inpField.addEventListener("input",initTyping);
 tryAgainBtn.addEventListener("click" ,reset);
 returnBtn.addEventListener("click" ,test1);
 
-randomParagraph();
+// randomParagraph();
 timeTag.innerHTML = maxTime;
-//randomParagraph2();
+randomParagraph2();
 
 function scrollTopAnimated(dist,dura) {
     $(".typing-text").animate(
