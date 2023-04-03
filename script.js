@@ -188,11 +188,12 @@ function reset2(){
     let wpm = Math.round(((idx2-mistakes)/5 )/ (maxTime-timeLeft)*60);
     wpm = wpm <0 || !wpm || wpm === Infinity ? 0 : wpm;
 
-    db.collection("test").add({
+    db.collection("test2").add({
         name : nameField.value,
         wpm : wpm,
         cpm : idx2-mistakes,
         mistakes : mistakes,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
     document.removeEventListener("keydown" , () => nameField.focus());
     reset();
@@ -205,11 +206,12 @@ function result2(){
     let wpm = Math.round(((idx2-mistakes)/5 )/ (maxTime-timeLeft)*60);
     wpm = wpm <0 || !wpm || wpm === Infinity ? 0 : wpm;
 
-    db.collection("test").add({
+    db.collection("test2").add({
         name : nameField.value,
         wpm : wpm,
         cpm : idx2-mistakes,
         mistakes : mistakes,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).then(()=>{window.location.href = "board.html";});
 }
 

@@ -2,7 +2,7 @@
 firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 
-const ref = db.collection("test");
+const ref = db.collection("test2");
 
 function getBoard(){
     let rank = 1;
@@ -24,6 +24,9 @@ function getBoard(){
                 var new_row = document.createElement('div');
                 new_row.className = "row";
 
+                var d = doc.data()["createdAt"].toDate().toLocaleString();
+                // console.log(Date(d));
+
                 if (rank==1){
                     new_row.className += " no1";
                 }else if (rank==2){
@@ -38,8 +41,17 @@ function getBoard(){
                 new_row.appendChild(new_rank);
 
                 var new_user = document.createElement('div');
-                new_user.className = "User"
-                new_user.textContent = doc.data()["name"];
+                new_user.className = "User";
+
+                var new_date = document.createElement('div');
+                new_date.textContent = d;
+                new_date.className = "hid";
+                new_user.appendChild(new_date);
+
+                var new_name = document.createElement('div');
+                new_name.textContent = doc.data()["name"];
+                new_user.appendChild(new_name);
+
                 new_row.appendChild(new_user);
 
                 var new_wpm = document.createElement('div');
@@ -67,6 +79,8 @@ function getBoard(){
             querySnapshot.forEach(doc => {  
                 var new_row = document.createElement('div');
                 new_row.className = "row";
+                
+                var d = doc.data()["createdAt"].toDate().toLocaleString();
 
                 if (rank==1){
                     new_row.className += " no1";
@@ -82,8 +96,17 @@ function getBoard(){
                 new_row.appendChild(new_rank);
 
                 var new_user = document.createElement('div');
-                new_user.className = "User"
-                new_user.textContent = doc.data()["name"];
+                new_user.className = "User";
+
+                var new_date = document.createElement('div');
+                new_date.textContent = d;
+                new_date.className = "hid";
+                new_user.appendChild(new_date);
+
+                var new_name = document.createElement('div');
+                new_name.textContent = doc.data()["name"];
+                new_user.appendChild(new_name);
+
                 new_row.appendChild(new_user);
 
                 var new_wpm = document.createElement('div');

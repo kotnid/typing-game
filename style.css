@@ -320,3 +320,6 @@ button:hover {
     line-height: 1.5em;
 }
 
+.rotate-button{
+    width: 40px;
+}
