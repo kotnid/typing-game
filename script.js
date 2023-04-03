@@ -7,7 +7,8 @@ const cpmTag = document.querySelector(".cpm span");
 const tryAgainBtn = document.querySelector(".try-button");
 const returnBtn = document.querySelector(".return-button");
 const nameField = document.querySelector(".name-field");
-const popup = document.querySelector(".popup")
+const popup = document.querySelector(".popup");
+const chart = document.querySelector(".chart");
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
@@ -19,12 +20,15 @@ let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 60;
+maxTime = 2;
 timeLeft = maxTime;
 
 let playing = false;
 
 let nxtline = 0;
+
+let xValues = [];
+let yValues = [];
 
 function getRandomParagraph(){
     return fetch(paragraph_api)
@@ -148,6 +152,9 @@ function initTimer(){
         
         cpmTag.innerText = idx2 - mistakes;
         wpmTag.innerText = wpm;
+        // console.log(wpm);
+        xValues.push((maxTime-timeLeft).toFixed(2));
+        yValues.push(wpm);
     }else{
         clearInterval(timer);
         endGame();
@@ -169,11 +176,20 @@ function reset(){
     cpmTag.innerText = 0;
     nxtline = 0;
     mistakeTag.innerText = 0;
+    xValues = [];
+    yValues = [];
     timeTag.innerHTML = maxTime;
     scrollTopAnimated(0,1000);
 }
 
 function endGame(){
+    chart_ele.data.datasets[0].data = yValues;
+    chart_ele.data.labels = xValues;
+    chart_ele.update();
+
+    chart.classList.add("open-chart");
+
+    document.querySelector(".chart").style.display = "block";
     document.removeEventListener("keydown" , () => inpField.focus());
     inpField.removeEventListener("input",initTyping);
     typingText.removeEventListener("click" , () => inpField.focus());
@@ -187,6 +203,7 @@ function endGame(){
     
     document.querySelector(".cpm2 span").innerText = idx2 - mistakes;
     document.querySelector(".wpm2 span").innerText = wpm;
+
 }
 
 function reset2(){
@@ -203,7 +220,9 @@ function reset2(){
     document.removeEventListener("keydown" , () => nameField.focus());
     reset();
     document.querySelector(".popup-content").classList.remove("open-popup-content");
+    chart.classList.remove("open-chart");
     popup.classList.remove("open-popup");
+    document.querySelector(".chart").style.display = "none";
     nameField.value = "";
 }
 
@@ -269,4 +288,24 @@ document.querySelector(".title h1").addEventListener("click", function() {
 
 document.querySelector(".rotate-button").addEventListener("click", function() {
     window.location.href = "index.html?mode=rotate";
+});
+
+
+// Chart
+let chart_ele = new  Chart("myChart",{
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [{
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: yValues
+      }]
+    },
+    options: {
+        legend: {display: false},
+        maintainAspectRatio: false,
+    }
 });
