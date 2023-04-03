@@ -26,6 +26,7 @@ body{
 }
 
 .wrapper .title{
+    display: flex;
     padding: 0 20px 0;
     justify-content: center;   
 }
@@ -148,3 +149,25 @@ button:hover {
 .row .User div::-webkit-scrollbar{
     width: 0;
 }
+
+
+
+.rotate-button{
+    /* left: 20%; */
+    margin-left: auto;
+    position: relative;
+    border: none;
+    outline: none;
+    border: 1px solid #ccc;
+    background: none;
+    padding: 12px 0;
+    width: 40px;
+    border-radius: 5px;
+    font-weight: 700;
+    transition: transform 0.3s ease;
+}
+
+button:active{
+    transform: scale(0.8);
+}
+

@@ -103,7 +103,7 @@ body{
     transition: transform 0.3s ease;
 }
 
-.content button:active , .result-button:active{
+button:active{
     transform: scale(0.8);
 }
 

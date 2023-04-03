@@ -20,7 +20,7 @@ let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 60;
+maxTime = 10;
 timeLeft = maxTime;
 
 let playing = false;
@@ -254,9 +254,17 @@ function endGame(){
 
     document.body.classList.add('blur');
 
-    const query = db.collection("data1").where("wpm", '>=',wpm);
-    let num;
+    const url = new URL(window.location);
+    const mode = url.searchParams.get('mode');
 
+    var query;
+    if(mode == "rotate"){
+        query = db.collection("data2").where("wpm", '>=',wpm);
+    }else{
+         query = db.collection("data1").where("wpm", '>=',wpm);
+    }
+
+    let num;
     query.get().then(querySnapshot => {
         const num = querySnapshot.size+1;
         document.querySelector(".rank2 span").innerText = addSuffix(num);
@@ -281,13 +289,27 @@ function reset2(){
     let wpm = Math.round(((idx2-mistakes)/5 )/ (maxTime-timeLeft)*60);
     wpm = wpm <0 || !wpm || wpm === Infinity ? 0 : wpm;
 
-    db.collection("data1").add({
-        name : nameField.value,
-        wpm : wpm,
-        cpm : idx2-mistakes,
-        mistakes : mistakes,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
+    const url = new URL(window.location);
+    const mode = url.searchParams.get('mode');
+
+    if(mode =="rotate"){
+        db.collection("data2").add({
+            name : nameField.value,
+            wpm : wpm,
+            cpm : idx2-mistakes,
+            mistakes : mistakes,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+    }else{
+        db.collection("data1").add({
+            name : nameField.value,
+            wpm : wpm,
+            cpm : idx2-mistakes,
+            mistakes : mistakes,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+    }
+
     document.removeEventListener("keydown" , () => nameField.focus());
     reset();
     
@@ -308,13 +330,27 @@ function result2(){
     let wpm = Math.round(((idx2-mistakes)/5 )/ (maxTime-timeLeft)*60);
     wpm = wpm <0 || !wpm || wpm === Infinity ? 0 : wpm;
 
-    db.collection("data1").add({
-        name : nameField.value,
-        wpm : wpm,
-        cpm : idx2-mistakes,
-        mistakes : mistakes,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(()=>{window.location.href = "board.html";});
+    const url = new URL(window.location);
+    const mode = url.searchParams.get('mode');
+
+    if(mode =="rotate"){
+        db.collection("data2").add({
+            name : nameField.value,
+            wpm : wpm,
+            cpm : idx2-mistakes,
+            mistakes : mistakes,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(()=>{window.location.href = "board.html?type=rotate";});
+    }else{
+        db.collection("data1").add({
+            name : nameField.value,
+            wpm : wpm,
+            cpm : idx2-mistakes,
+            mistakes : mistakes,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(()=>{window.location.href = "board.html";});
+    }
+    
 }
 
 function result(){

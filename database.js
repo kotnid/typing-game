@@ -2,20 +2,16 @@
 firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 
-const ref = db.collection("data1");
+var ref = db.collection("data1");
 
 function getBoard(){
     let rank = 1;
     const url = new URL(window.location);
     const sortby = url.searchParams.get('sortby');
-    const rng = url.searchParams.get('timerng');
-    let timerng;
-
-    if(rng != null){
-        const today = new Date();
-        timerng = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    }else{
-        timerng = 0;
+    const type = url.searchParams.get('type');
+    
+    if(type == "rotate"){
+        ref = db.collection("data2");
     }
 
     if(sortby == null){
@@ -145,19 +141,43 @@ const user = document.querySelector(".User");
 const rank = document.querySelector(".Rank");
 
 wpm.addEventListener("click", function() {
-    window.location.href = "board.html?sortby=wpm";
+    const url = new URL(window.location);
+    const type = url.searchParams.get('type');
+    if(type == "rotate"){
+        window.location.href = "board.html?sortby=wpm&type=rotate";
+    }else{
+        window.location.href = "board.html?sortby=wpm";
+    }
 });
 
 cpm.addEventListener("click", function() {
-    window.location.href = "board.html?sortby=cpm";
+    const url = new URL(window.location);
+    const type = url.searchParams.get('type');
+    if(type == "rotate"){
+        window.location.href = "board.html?sortby=cpm&type=rotate";
+    }else{
+        window.location.href = "board.html?sortby=cpm";
+    }
 });
 
 mistake.addEventListener("click", function() {
-    window.location.href = "board.html?sortby=mistakes";
+    const url = new URL(window.location);
+    const type = url.searchParams.get('type');
+    if(type == "rotate"){
+        window.location.href = "board.html?sortby=mistakes&type=rotate";
+    }else{
+        window.location.href = "board.html?sortby=mistakes";
+    }
 });
 
 user.addEventListener("click", function() {
-    window.location.href = "board.html?sortby=createdAt";
+    const url = new URL(window.location);
+    const type = url.searchParams.get('type');
+    if(type == "rotate"){
+        window.location.href = "board.html?sortby=createdAt&type=rotate";
+    }else{
+        window.location.href = "board.html?sortby=createdAt";
+    }
 });
 
 rank.addEventListener("click", function() {
@@ -174,4 +194,15 @@ buttons.forEach(button => {
       button.disabled = false;
     }, 1500); // enable the button after 2 seconds
   });
+});
+
+document.querySelector(".rotate-button").addEventListener("click", function() {
+    const url = new URL(window.location);
+    const mode = url.searchParams.get('type');
+
+    if(mode == "rotate"){
+        window.location.href = "board.html";
+    }else{
+        window.location.href = "board.html?type=rotate";
+    }
 });
