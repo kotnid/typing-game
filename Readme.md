@@ -3,6 +3,9 @@
 ## Typing test ##
 ![game.png](src/game.png)
 
+## Show the results with chart ##
+![result.png](src/result.png)
+
 ## With leaderboard ##
 ![board.png](src/board.png)
 
@@ -34,6 +37,7 @@ const firebaseConfig = {
 ``` 
 
 ## Credit ##
+- chatGPT (save my life) 
 - HKOI 2023 mini comp2 (which push me back to write website xd)
 - firestore
 - [CSS basically follow this video to do lol](https://www.youtube.com/watch?v=Hg80AjDNnJk)
