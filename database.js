@@ -19,7 +19,7 @@ function getBoard(){
     }
 
     if(sortby == null){
-        ref.orderBy("wpm","desc").orderBy("cpm","desc").orderBy("mistakes","asc").limit(10).get().then(querySnapshot => {
+        ref.orderBy("wpm","desc").orderBy("cpm","desc").orderBy("mistakes","asc").get().then(querySnapshot => {
             querySnapshot.forEach(doc => {  
                 var new_row = document.createElement('div');
                 new_row.className = "row";
@@ -75,7 +75,7 @@ function getBoard(){
             })
         });
     }else{
-        ref.orderBy(sortby,"desc").limit(10).get().then(querySnapshot => {
+        ref.orderBy(sortby,"desc").get().then(querySnapshot => {
             querySnapshot.forEach(doc => {  
                 var new_row = document.createElement('div');
                 new_row.className = "row";

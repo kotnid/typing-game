@@ -76,6 +76,7 @@ body{
 
 .User{
     width: 40%;
+    height: 100%;
     position: relative;
     display: inline-block;
 }
@@ -139,3 +140,11 @@ button:hover {
     transform: scale(1.1);
 }
 
+.row .User div{
+    font-size: 18px;
+    height: 100%;
+    overflow: auto;
+}
+.row .User div::-webkit-scrollbar{
+    width: 0;
+}

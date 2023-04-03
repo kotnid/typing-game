@@ -20,7 +20,7 @@ let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 60;
+maxTime = 5;
 timeLeft = maxTime;
 
 let playing = false;
@@ -240,6 +240,16 @@ function endGame(){
     document.querySelector(".wpm2 span").innerText = wpm;
 
     document.body.classList.add('blur');
+
+    const query = db.collection("data1").where("wpm", '>=',wpm);
+
+    query.onSnapshot(snapshot => {
+        const documents = snapshot.docs;
+        documents.sort((a, b) => b.data().wpm - a.data().wpm);
+        const index = documents.findIndex(doc => doc.data().wpm === wpm);
+        const rank = index + 1;
+        console.log('Rank:', rank);
+      });
 }
 
 function reset2(){
