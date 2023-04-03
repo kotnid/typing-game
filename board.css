@@ -29,6 +29,7 @@ body{
     display: flex;
     padding: 0 20px 0;
     justify-content: center;   
+    align-items: center;
 }
 
 .board{
@@ -171,3 +172,8 @@ button:active{
     transform: scale(0.8);
 }
 
+.rotate-text{
+    margin-left: 3%;
+    margin-top: 1.5%;
+    display: none;
+}

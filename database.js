@@ -12,6 +12,7 @@ function getBoard(){
     
     if(type == "rotate"){
         ref = db.collection("data2");
+        document.querySelector(".rotate-text").style.display = "block";
     }
 
     if(sortby == null){
