@@ -147,7 +147,7 @@ function initTyping(){
             }
         }        
 
-        console.log(nxtline);
+        // console.log(nxtline);
         characters[idx2].classList.add("active");
         mistakeTag.innerText = mistakes;
     }else{
@@ -206,6 +206,19 @@ function reset(){
     scrollTopAnimated(0,1000);
 }
 
+function addSuffix(num) {
+    if (num % 100 >= 11 && num % 100 <= 13) {
+      return num + 'th';
+    } else {
+      switch(num % 10) {
+        case 1: return num + 'st';
+        case 2: return num + 'nd';
+        case 3: return num + 'rd';
+        default: return num + 'th';
+      }
+    }
+  }
+
 function endGame(){
     let newY = [];
     let newX = [];
@@ -242,14 +255,26 @@ function endGame(){
     document.body.classList.add('blur');
 
     const query = db.collection("data1").where("wpm", '>=',wpm);
+    let num;
 
-    query.onSnapshot(snapshot => {
-        const documents = snapshot.docs;
-        documents.sort((a, b) => b.data().wpm - a.data().wpm);
-        const index = documents.findIndex(doc => doc.data().wpm === wpm);
-        const rank = index + 1;
-        console.log('Rank:', rank);
-      });
+    query.get().then(querySnapshot => {
+        const num = querySnapshot.size+1;
+        document.querySelector(".rank2 span").innerText = addSuffix(num);
+
+        if (num==1){
+            document.querySelector(".rank2 span").classList.add("no1");
+        }else if (num==2){
+            document.querySelector(".rank2 span").classList.add("no2");
+        }else if (num==3){
+            document.querySelector(".rank2 span").classList.add("no3");
+        }else{
+            document.querySelector(".rank2 span").classList.add("no4");
+        }
+    });
+
+
+
+    
 }
 
 function reset2(){

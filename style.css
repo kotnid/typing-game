@@ -260,19 +260,20 @@ body{
 }
 
 .result{
-    padding-top: 4%;
+    padding-top: 10%;
     position: absolute;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    height: 100%;
 }
 
 .result li{
     list-style-type: none;
     align-items: stretch;
     justify-content: center;
-    margin-bottom: 30%;
+    margin-bottom: 10%;
     font-size: 25px;
     font-weight: 500;
 }
@@ -443,3 +444,20 @@ button:hover {
   .blur > *:not(.popup):not(.chart) {
     filter: blur(5px);
   }
+
+
+.no1{
+    color: #FFD700;
+}
+
+.no2{
+    color: #C0C0C0;
+}
+
+.no3{
+    color: #CD7F32;
+}
+
+.no4{
+    color: #F5F5F5;
+}
