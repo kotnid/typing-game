@@ -68,7 +68,7 @@ function randomParagraph(){
 async function randomParagraph2(){
     const url = new URL(window.location);
     const mode = url.searchParams.get('mode');
-    
+
     typingText.innerHTML = "";
     const pharagraph = await getRandomParagraph();
     pharagraph.split("").forEach(span => {
@@ -244,7 +244,7 @@ function reset2(){
     let wpm = Math.round(((idx2-mistakes)/5 )/ (maxTime-timeLeft)*60);
     wpm = wpm <0 || !wpm || wpm === Infinity ? 0 : wpm;
 
-    db.collection("test2").add({
+    db.collection("data1").add({
         name : nameField.value,
         wpm : wpm,
         cpm : idx2-mistakes,
@@ -271,7 +271,7 @@ function result2(){
     let wpm = Math.round(((idx2-mistakes)/5 )/ (maxTime-timeLeft)*60);
     wpm = wpm <0 || !wpm || wpm === Infinity ? 0 : wpm;
 
-    db.collection("test2").add({
+    db.collection("data1").add({
         name : nameField.value,
         wpm : wpm,
         cpm : idx2-mistakes,

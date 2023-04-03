@@ -2,7 +2,7 @@
 firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 
-const ref = db.collection("test2");
+const ref = db.collection("data1");
 
 function getBoard(){
     let rank = 1;
