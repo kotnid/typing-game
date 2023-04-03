@@ -96,6 +96,18 @@ function initTyping(){
             }
 
             idx2++;
+            const Rect1 = characters[idx2-1].getBoundingClientRect();
+            const Rect2 = characters[idx2].getBoundingClientRect();
+            
+            if(Math.abs((Rect1.top+Rect1.bottom)/2 - (Rect2.top+Rect2.bottom)/2) > Rect1.height/2){
+                nxtline++;
+            }
+            
+            if(nxtline == 3){
+                const lineHeight = parseInt(getComputedStyle(typingText).lineHeight);
+                scrollTopAnimated(document.querySelector(".typing-text").scrollTop+lineHeight,500);
+                nxtline--;
+            }
         }else{
             characters[idx2].classList.remove("active");
             idx2--;
@@ -103,28 +115,21 @@ function initTyping(){
                 mistakes--;
             }
             characters[idx2].classList.remove("correct" , "incorrect");
-        }
+            
+            if(idx2 != 0){
+                const Rect1 = characters[idx2-1].getBoundingClientRect();
+                const Rect2 = characters[idx2].getBoundingClientRect();
 
-        if(idx2 != 0){
-            const Rect1 = characters[idx2-1].getBoundingClientRect();
-            const Rect2 = characters[idx2].getBoundingClientRect();
-
-            if(Math.abs((Rect1.top+Rect1.bottom)/2 - (Rect2.top+Rect2.bottom)/2) > Rect1.height/2){
-                nxtline++;
-                console.log(nxtline);
+                if(Math.abs((Rect1.top+Rect1.bottom)/2 - (Rect2.top+Rect2.bottom)/2) > Rect1.height/2){
+                    if(nxtline == 2){
+                        const lineHeight = parseInt(getComputedStyle(typingText).lineHeight);
+                        scrollTopAnimated(document.querySelector(".typing-text").scrollTop-lineHeight,500);
+                    }
+                }
             }
-        }
-        
-        // if (idx2 != 0 && characters[idx2-1].offsetTop !== characters[idx2].offsetTop) {
-        //     nxtline++;
-        // }
+        }        
 
-        if(nxtline == 3){
-            nxtline--;
-            const lineHeight = parseInt(getComputedStyle(typingText).lineHeight);
-            scrollTopAnimated(document.querySelector(".typing-text").scrollTop+lineHeight,500);
-        }
-        
+        console.log(nxtline);
         characters[idx2].classList.add("active");
         mistakeTag.innerText = mistakes;
     }else{
