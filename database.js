@@ -142,6 +142,7 @@ const wpm = document.querySelector(".Wpm");
 const cpm = document.querySelector(".Cpm");
 const mistake = document.querySelector(".Mistake");
 const user = document.querySelector(".User");
+const rank = document.querySelector(".Rank");
 
 wpm.addEventListener("click", function() {
     window.location.href = "board.html?sortby=wpm";
@@ -156,6 +157,10 @@ mistake.addEventListener("click", function() {
 });
 
 user.addEventListener("click", function() {
+    window.location.href = "board.html?sortby=createdAt";
+});
+
+rank.addEventListener("click", function() {
     window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 });
 

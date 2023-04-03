@@ -20,7 +20,7 @@ let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 5;
+maxTime = 60;
 timeLeft = maxTime;
 
 let playing = false;
