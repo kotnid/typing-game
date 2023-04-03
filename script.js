@@ -153,6 +153,7 @@ function initTyping(){
     }else{
         inpField.value = "";
         clearInterval();
+        endGame();
     }
 }
 
