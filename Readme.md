@@ -9,7 +9,13 @@
 ## You can sort by mistakes ??? ## 
 ![mistake.png](src/mistake.png)
 
-## Updates, which are typically not performed:) ##
+
+## Modes Introduction ##
+### Rotate mode ###
+![rotate.png](src/rotate.png)
+
+
+## Updates, which are typically not performed :) ##
 1. Daily/weekly board
 2. 1v1 function (who wants to play 1v1 in a typing game lol)
 3. mods in game (DT/HD/HR) - yea osu
