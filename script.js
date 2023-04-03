@@ -20,7 +20,7 @@ let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 60;
+maxTime = 5;
 timeLeft = maxTime;
 
 let playing = false;
@@ -224,6 +224,7 @@ function endGame(){
     document.querySelector(".cpm2 span").innerText = idx2 - mistakes;
     document.querySelector(".wpm2 span").innerText = wpm;
 
+    document.body.classList.add('blur');
 }
 
 function reset2(){
@@ -248,6 +249,7 @@ function reset2(){
         popup.classList.remove("open-popup","close-popup");
         document.querySelector(".chart").classList.remove("remove-chart", "open-chart");
         document.querySelector(".chart").style.display = "none";
+        document.body.classList.remove('blur');
       }, 1000);
     nameField.value = "";
 }

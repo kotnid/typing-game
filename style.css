@@ -175,6 +175,7 @@ body{
 
 /* CSS for popup */
 .popup {
+    backdrop-filter: none;
     width: 30%;
     height: 40%;
     background-color: #E1E1F0;
@@ -325,6 +326,7 @@ button:hover {
 }
 
 .chart{
+    backdrop-filter: none;
     top: 3%;
     width: 50%;
     height: 20%;
@@ -437,3 +439,7 @@ button:hover {
     /* animation-timing-function: linear; */
   }
 
+
+  .blur > *:not(.popup):not(.chart) {
+    filter: blur(5px);
+  }
