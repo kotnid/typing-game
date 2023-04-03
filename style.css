@@ -373,3 +373,67 @@ button:hover {
         color: #cb3439;
         display: none;
     }
+
+.remove-chart{
+    animation: rev-expand-chart 1s ease forwards;
+}
+
+@keyframes rev-expand-chart {
+    0% {
+        width: 50%;
+        height: 20%;
+        transform: translateX(0vw);
+    }
+    50% {
+        width: 1%;
+        height: 20%;
+        transform: translateX(0vw);
+    }
+    100% {
+        width: 1%;
+        height: 1%;
+        transform: translateX(0vw);
+    }
+    /* animation-timing-function: linear; */
+    }
+
+
+.close-popup-content{
+    animation: rev-expand2 1s ease forwards;
+}
+
+.close-popup{
+    animation: rev-expand 1s ease forwards;
+}
+
+@keyframes rev-expand2 {
+    0% {
+      opacity: 1;
+    }
+    20% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes rev-expand {
+    0% {
+        width: 30%;
+        height: 40%;
+        transform: translateX(-15vw);
+    }
+    50% {
+      width: 1%;
+      height: 40%;
+      transform: translateX(0vw);
+    }
+    100% {     
+      width: 1%;
+      height: 1%;
+      transform: translateX(0vw);
+    }
+    /* animation-timing-function: linear; */
+  }
+

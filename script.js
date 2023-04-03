@@ -20,7 +20,7 @@ let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 20;
+maxTime = 60;
 timeLeft = maxTime;
 
 let playing = false;
@@ -239,10 +239,16 @@ function reset2(){
     });
     document.removeEventListener("keydown" , () => nameField.focus());
     reset();
-    document.querySelector(".popup-content").classList.remove("open-popup-content");
-    chart.classList.remove("open-chart");
-    popup.classList.remove("open-popup");
-    document.querySelector(".chart").style.display = "none";
+    
+    document.querySelector(".popup-content").classList.add("close-popup-content");
+    popup.classList.add("close-popup");
+    document.querySelector(".chart").classList.add("remove-chart");
+    setTimeout(function() {
+        document.querySelector(".popup-content").classList.remove("open-popup-content","close-popup-content");
+        popup.classList.remove("open-popup","close-popup");
+        document.querySelector(".chart").classList.remove("remove-chart", "open-chart");
+        document.querySelector(".chart").style.display = "none";
+      }, 1000);
     nameField.value = "";
 }
 
