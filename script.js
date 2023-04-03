@@ -20,7 +20,7 @@ let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 2;
+maxTime = 60;
 timeLeft = maxTime;
 
 let playing = false;
@@ -155,8 +155,13 @@ function initTimer(){
         // console.log(wpm);
         xValues.push((maxTime-timeLeft).toFixed(2));
         yValues.push(wpm);
+
+        if(timeLeft <= 10){
+            timeTag.style.color = "#cb3439";
+        }
     }else{
         timeTag.innerText = 0;
+        timeTag.style.color = "black";
         clearInterval(timer);
         endGame();
     }
@@ -179,6 +184,7 @@ function reset(){
     mistakeTag.innerText = 0;
     xValues = [];
     yValues = [];
+    timeTag.style.color = "black";
     timeTag.innerHTML = maxTime;
     scrollTopAnimated(0,1000);
 }
