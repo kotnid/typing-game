@@ -20,7 +20,7 @@ let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 5;
+maxTime = 60;
 timeLeft = maxTime;
 
 let playing = false;
@@ -348,4 +348,16 @@ let chart_ele = new  Chart("myChart",{
         maintainAspectRatio: false,
         spanGaps: true 
     }
+});
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    button.disabled = true;
+
+    setTimeout(() => {
+      button.disabled = false;
+    }, 1500); // enable the button after 2 seconds
+  });
 });

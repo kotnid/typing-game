@@ -158,3 +158,15 @@ mistake.addEventListener("click", function() {
 user.addEventListener("click", function() {
     window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 });
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    button.disabled = true;
+
+    setTimeout(() => {
+      button.disabled = false;
+    }, 1500); // enable the button after 2 seconds
+  });
+});
