@@ -35,11 +35,24 @@ function getRandomParagraph(){
 
 // generate pharagraph
 function randomParagraph(){
+    const url = new URL(window.location);
+    const mode = url.searchParams.get('mode');
+
     typingText.innerHTML = "";
     let idx = Math.floor(Math.random() * pharagraphs.length);
     pharagraphs[idx].split("").forEach(span => {
-        let spanTag = `<span>${span}</span>`;
-        typingText.innerHTML += spanTag;
+        if(mode == "rotate"){
+            if(span == " "){
+                let spanTag = `<span class="space">${span}</span>`;
+                typingText.innerHTML += spanTag;
+            }else{
+                let spanTag = `<span class="span-rotate">${span}</span>`;
+                typingText.innerHTML += spanTag;
+            }   
+        }else{
+            let spanTag = `<span>${span}</span>`;
+            typingText.innerHTML += spanTag;
+        }
     })
 
     document.addEventListener("keydown" , () => inpField.focus());
@@ -52,7 +65,7 @@ async function randomParagraph2(){
     typingText.innerHTML = "";
     const pharagraph = await getRandomParagraph();
     pharagraph.split("").forEach(span => {
-        let spanTag = `<span>${span}</span>`;
+        let spanTag = `<span class="span-rotate">${span}</span>`;
         typingText.innerHTML += spanTag;
     })
 
@@ -91,10 +104,20 @@ function initTyping(){
             }
             characters[idx2].classList.remove("correct" , "incorrect");
         }
-        
-        if (idx2 != 0 && characters[idx2-1].offsetTop !== characters[idx2].offsetTop) {
-            nxtline++;
+
+        if(idx2 != 0){
+            const Rect1 = characters[idx2-1].getBoundingClientRect();
+            const Rect2 = characters[idx2].getBoundingClientRect();
+
+            if(Math.abs((Rect1.top+Rect1.bottom)/2 - (Rect2.top+Rect2.bottom)/2) > Rect1.height/2){
+                nxtline++;
+                console.log(nxtline);
+            }
         }
+        
+        // if (idx2 != 0 && characters[idx2-1].offsetTop !== characters[idx2].offsetTop) {
+        //     nxtline++;
+        // }
 
         if(nxtline == 3){
             nxtline--;
@@ -216,4 +239,8 @@ function getRandomColor() {
 document.querySelector(".title h1").addEventListener("click", function() {
     const randomColor = getRandomColor();
     document.querySelector(".title h1").style.color = randomColor;
+});
+
+document.querySelector(".rotate-button").addEventListener("click", function() {
+    window.location.href = "index.html?mode=rotate";
 });

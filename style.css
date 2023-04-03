@@ -34,9 +34,14 @@ body{
     display: flex;
 }
 
-.title button.result-button {
+.title button.result-button , .rotate-button{
     margin-left: auto;
-  }
+}
+
+.rotate-button{
+    left: 20%;
+    position: relative;
+}
 
 /* CSS for input field */
 .wrapper .input-field{
@@ -86,7 +91,7 @@ body{
 
 /* CSS for button */
 
-.content button , .result-button{
+.content button , .result-button , .rotate-button{
     border: none;
     outline: none;
     border: 1px solid #ccc;
@@ -296,3 +301,14 @@ body{
 button:hover {
     transform: scale(1.1);
 }
+
+.span-rotate{
+    transform: scaleX(-1);
+    display: inline-block;
+    line-height: 1.5em;
+}
+
+.space{
+    line-height: 1.5em;
+}
+
