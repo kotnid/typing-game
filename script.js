@@ -349,3 +349,15 @@ let chart_ele = new  Chart("myChart",{
         spanGaps: true 
     }
 });
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    button.disabled = true;
+
+    setTimeout(() => {
+      button.disabled = false;
+    }, 1500); // enable the button after 2 seconds
+  });
+});
