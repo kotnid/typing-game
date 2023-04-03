@@ -365,3 +365,11 @@ button:hover {
     }
     /* animation-timing-function: linear; */
     }
+
+    .valid{
+        font-size: 11px;
+        position: fixed;
+        margin-left: 2%;
+        color: #cb3439;
+        display: none;
+    }

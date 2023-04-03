@@ -246,8 +246,10 @@ function result(){
 function test2(){
     if(nameField.value == ""){
         nameField.style.borderColor = "#cb3439";
+        document.querySelector(".valid").style.display = "block";
     }else{
         nameField.style.borderColor = "#ccc";
+        document.querySelector(".valid").style.display = "none";
         result2();
     }
 }
@@ -255,8 +257,10 @@ function test2(){
 function test1(){
     if(nameField.value == ""){
         nameField.style.borderColor = "#cb3439";
+        document.querySelector(".valid").style.display = "block";
     }else{
         nameField.style.borderColor = "#ccc";
+        document.querySelector(".valid").style.display = "none";
         reset2();
     }
 }
