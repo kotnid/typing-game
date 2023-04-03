@@ -156,6 +156,7 @@ function initTimer(){
         xValues.push((maxTime-timeLeft).toFixed(2));
         yValues.push(wpm);
     }else{
+        timeTag.innerText = 0;
         clearInterval(timer);
         endGame();
     }
