@@ -19,7 +19,7 @@ let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 6;
+maxTime = 60;
 timeLeft = maxTime;
 
 let playing = false;
@@ -242,6 +242,7 @@ tryAgainBtn.addEventListener("click" ,reset);
 returnBtn.addEventListener("click" ,test1);
 
 randomParagraph();
+timeTag.innerHTML = maxTime;
 //randomParagraph2();
 
 function scrollTopAnimated(dist,dura) {
