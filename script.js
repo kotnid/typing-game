@@ -14,13 +14,13 @@ const chart = document.querySelector(".chart");
 firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 
-const paragraph_api = "https://baconipsum.com/api/?type=all-meat&sentences=20"
+const paragraph_api = "https://baconipsum.com/api/?type=all-meat&sentences=1"
 
 let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 10;
+maxTime = 60;
 timeLeft = maxTime;
 
 let playing = false;
@@ -152,7 +152,7 @@ function initTyping(){
         mistakeTag.innerText = mistakes;
     }else{
         inpField.value = "";
-        clearInterval();
+        clearInterval(timer);
         endGame();
     }
 }
