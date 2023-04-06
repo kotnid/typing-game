@@ -178,7 +178,8 @@ button:active{
 }
 
 .rotate-text{
+    position: absolute;
     margin-left: 3%;
-    margin-top: 1.5%;
+    left: 40%;
     display: none;
 }
