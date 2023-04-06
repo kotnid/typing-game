@@ -1,4 +1,5 @@
 # Boring project - Typing game in website # 
+## Website : [link](https://typing-af2bb.firebaseapp.com/index.html) You can play it! ## 
 
 ## Typing test ##
 ![game.png](src/game.png)
