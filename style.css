@@ -32,6 +32,7 @@ body{
     padding: 0 20px 0;
     justify-content: center;
     display: flex;
+    align-items: center;
 }
 
 .title button.result-button , .rotate-button{
@@ -39,7 +40,7 @@ body{
 }
 
 .rotate-button{
-    left: 20%;
+    left: 18%;
     position: relative;
 }
 
@@ -461,4 +462,8 @@ button:hover {
 
 .no4{
     color: #F5F5F5;
+}
+
+i{
+    margin-left: 2%;
 }

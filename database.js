@@ -242,3 +242,7 @@ document.querySelector(".daily-button").addEventListener("click" , function(){
         window.location.href = newUrl; 
     }
 })
+
+document.getElementById("github").addEventListener("click" , ()=>{
+    window.location.href = "https://github.com/kotnid/typing-game";
+});

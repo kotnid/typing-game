@@ -447,3 +447,7 @@ buttons.forEach(button => {
     }, 1500); // enable the button after 2 seconds
   });
 });
+
+document.getElementById("github").addEventListener("click" , ()=>{
+    window.location.href = "https://github.com/kotnid/typing-game";
+});
