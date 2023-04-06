@@ -166,42 +166,35 @@ const rank = document.querySelector(".Rank");
 
 wpm.addEventListener("click", function() {
     const url = new URL(window.location);
-    const type = url.searchParams.get('type');
-    if(type == "rotate"){
-        window.location.href = "board.html?sortby=wpm&type=rotate";
-    }else{
-        window.location.href = "board.html?sortby=wpm";
-    }
+    
+    url.searchParams.set("sortby", "wpm");
+    const newUrl = url.toString();
+    window.location.href = newUrl; 
 });
 
 cpm.addEventListener("click", function() {
     const url = new URL(window.location);
-    const type = url.searchParams.get('type');
-    if(type == "rotate"){
-        window.location.href = "board.html?sortby=cpm&type=rotate";
-    }else{
-        window.location.href = "board.html?sortby=cpm";
-    }
+    
+    url.searchParams.set("sortby", "cpm");
+    const newUrl = url.toString();
+    window.location.href = newUrl; 
 });
 
 mistake.addEventListener("click", function() {
     const url = new URL(window.location);
-    const type = url.searchParams.get('type');
-    if(type == "rotate"){
-        window.location.href = "board.html?sortby=mistakes&type=rotate";
-    }else{
-        window.location.href = "board.html?sortby=mistakes";
-    }
+    
+    url.searchParams.set("sortby", "mistakes");
+    const newUrl = url.toString();
+    window.location.href = newUrl; 
 });
 
 user.addEventListener("click", function() {
     const url = new URL(window.location);
-    const type = url.searchParams.get('type');
-    if(type == "rotate"){
-        window.location.href = "board.html?sortby=createdAt&type=rotate";
-    }else{
-        window.location.href = "board.html?sortby=createdAt";
-    }
+  
+    url.searchParams.set("sortby", "createdAt");
+    const newUrl = url.toString();
+    window.location.href = newUrl; 
+    
 });
 
 rank.addEventListener("click", function() {
@@ -225,9 +218,13 @@ document.querySelector(".rotate-button").addEventListener("click", function() {
     const mode = url.searchParams.get('type');
 
     if(mode == "rotate"){
-        window.location.href = "board.html";
+        url.searchParams.set("type", null);
+        const newUrl = url.toString();
+        window.location.href = newUrl; 
     }else{
-        window.location.href = "board.html?type=rotate";
+        url.searchParams.set("type", "rotate");
+        const newUrl = url.toString();
+        window.location.href = newUrl; 
     }
 });
 
