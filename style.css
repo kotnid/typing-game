@@ -313,7 +313,8 @@ button:hover {
 }
 
 .span-rotate{
-    transform: scaleX(-1);
+    /* transform: scaleX(-1); */
+    transform: rotate(180deg);
     display: inline-block;
     line-height: 1.5em;
 }

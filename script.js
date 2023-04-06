@@ -14,7 +14,7 @@ const chart = document.querySelector(".chart");
 firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 
-const paragraph_api = "https://baconipsum.com/api/?type=all-meat&sentences=1"
+const paragraph_api = "https://baconipsum.com/api/?type=all-meat&sentences=20"
 
 let idx2 = 0;
 let mistakes = 0;

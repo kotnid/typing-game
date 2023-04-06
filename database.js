@@ -9,6 +9,7 @@ function getBoard(){
     const url = new URL(window.location);
     const sortby = url.searchParams.get('sortby');
     const type = url.searchParams.get('type');
+    const filter = url.searchParams.get("filter");
     
     if(type == "rotate"){
         ref = db.collection("data2");
@@ -23,52 +24,59 @@ function getBoard(){
 
                 var d = doc.data()["createdAt"].toDate().toLocaleString();
                 // console.log(Date(d));
-
-                if (rank==1){
-                    new_row.className += " no1";
-                }else if (rank==2){
-                    new_row.className += " no2";
-                }else if (rank==3){
-                    new_row.className += " no3";
-                }
                 
-                var new_rank = document.createElement('div');
-                new_rank.className = "Rank"
-                new_rank.textContent = rank;
-                new_row.appendChild(new_rank);
+                const tdy = new Date();
+                // console.log(tdy.toDateString());
+                if (filter == "true" && tdy.toDateString() != doc.data()["createdAt"].toDate().toDateString()){
+                    //console.log(d);
+                }else{
 
-                var new_user = document.createElement('div');
-                new_user.className = "User";
+                    if (rank==1){
+                        new_row.className += " no1";
+                    }else if (rank==2){
+                        new_row.className += " no2";
+                    }else if (rank==3){
+                        new_row.className += " no3";
+                    }
+                    
+                    var new_rank = document.createElement('div');
+                    new_rank.className = "Rank"
+                    new_rank.textContent = rank;
+                    new_row.appendChild(new_rank);
 
-                var new_date = document.createElement('div');
-                new_date.textContent = d;
-                new_date.className = "hid";
-                new_user.appendChild(new_date);
+                    var new_user = document.createElement('div');
+                    new_user.className = "User";
 
-                var new_name = document.createElement('div');
-                new_name.textContent = doc.data()["name"];
-                new_user.appendChild(new_name);
+                    var new_date = document.createElement('div');
+                    new_date.textContent = d;
+                    new_date.className = "hid";
+                    new_user.appendChild(new_date);
 
-                new_row.appendChild(new_user);
+                    var new_name = document.createElement('div');
+                    new_name.textContent = doc.data()["name"];
+                    new_user.appendChild(new_name);
 
-                var new_wpm = document.createElement('div');
-                new_wpm.className = "Wpm"
-                new_wpm.textContent = doc.data()["wpm"];
-                new_row.appendChild(new_wpm);
+                    new_row.appendChild(new_user);
 
-                var new_cpm = document.createElement('div');
-                new_cpm.className = "Cpm"
-                new_cpm.textContent = doc.data()["cpm"];
-                new_row.appendChild(new_cpm);
+                    var new_wpm = document.createElement('div');
+                    new_wpm.className = "Wpm"
+                    new_wpm.textContent = doc.data()["wpm"];
+                    new_row.appendChild(new_wpm);
 
-                var new_mistake = document.createElement('div');
-                new_mistake.className = "Mistake"
-                new_mistake.textContent = doc.data()["mistakes"];
-                new_row.appendChild(new_mistake);
+                    var new_cpm = document.createElement('div');
+                    new_cpm.className = "Cpm"
+                    new_cpm.textContent = doc.data()["cpm"];
+                    new_row.appendChild(new_cpm);
+
+                    var new_mistake = document.createElement('div');
+                    new_mistake.className = "Mistake"
+                    new_mistake.textContent = doc.data()["mistakes"];
+                    new_row.appendChild(new_mistake);
 
 
-                document.querySelector(".content").appendChild(new_row);
-                rank++;
+                    document.querySelector(".content").appendChild(new_row);
+                    rank++;
+                };
             })
         });
     }else{
@@ -78,54 +86,69 @@ function getBoard(){
                 new_row.className = "row";
                 
                 var d = doc.data()["createdAt"].toDate().toLocaleString();
+                const tdy = new Date();
+                if (filter == "true" && tdy.toDateString() != doc.data()["createdAt"].toDate().toDateString()){
 
-                if (rank==1){
-                    new_row.className += " no1";
-                }else if (rank==2){
-                    new_row.className += " no2";
-                }else if (rank==3){
-                    new_row.className += " no3";
+                }else{
+                    if (rank==1){
+                        new_row.className += " no1";
+                    }else if (rank==2){
+                        new_row.className += " no2";
+                    }else if (rank==3){
+                        new_row.className += " no3";
+                    }
+                    
+                    var new_rank = document.createElement('div');
+                    new_rank.className = "Rank"
+                    new_rank.textContent = rank;
+                    new_row.appendChild(new_rank);
+
+                    var new_user = document.createElement('div');
+                    new_user.className = "User";
+
+                    var new_date = document.createElement('div');
+                    new_date.textContent = d;
+                    new_date.className = "hid";
+                    new_user.appendChild(new_date);
+
+                    var new_name = document.createElement('div');
+                    new_name.textContent = doc.data()["name"];
+                    new_user.appendChild(new_name);
+
+                    new_row.appendChild(new_user);
+
+                    var new_wpm = document.createElement('div');
+                    new_wpm.className = "Wpm"
+                    new_wpm.textContent = doc.data()["wpm"];
+                    new_row.appendChild(new_wpm);
+
+                    var new_cpm = document.createElement('div');
+                    new_cpm.className = "Cpm"
+                    new_cpm.textContent = doc.data()["cpm"];
+                    new_row.appendChild(new_cpm);
+
+                    var new_mistake = document.createElement('div');
+                    new_mistake.className = "Mistake"
+                    new_mistake.textContent = doc.data()["mistakes"];
+                    new_row.appendChild(new_mistake);
+
+
+                    document.querySelector(".content").appendChild(new_row);
+                    rank++;
                 }
-                
-                var new_rank = document.createElement('div');
-                new_rank.className = "Rank"
-                new_rank.textContent = rank;
-                new_row.appendChild(new_rank);
-
-                var new_user = document.createElement('div');
-                new_user.className = "User";
-
-                var new_date = document.createElement('div');
-                new_date.textContent = d;
-                new_date.className = "hid";
-                new_user.appendChild(new_date);
-
-                var new_name = document.createElement('div');
-                new_name.textContent = doc.data()["name"];
-                new_user.appendChild(new_name);
-
-                new_row.appendChild(new_user);
-
-                var new_wpm = document.createElement('div');
-                new_wpm.className = "Wpm"
-                new_wpm.textContent = doc.data()["wpm"];
-                new_row.appendChild(new_wpm);
-
-                var new_cpm = document.createElement('div');
-                new_cpm.className = "Cpm"
-                new_cpm.textContent = doc.data()["cpm"];
-                new_row.appendChild(new_cpm);
-
-                var new_mistake = document.createElement('div');
-                new_mistake.className = "Mistake"
-                new_mistake.textContent = doc.data()["mistakes"];
-                new_row.appendChild(new_mistake);
-
-
-                document.querySelector(".content").appendChild(new_row);
-                rank++;
             })
         });
+    }
+}
+
+function init(){
+    const url = new URL(window.location);
+    const filter = url.searchParams.get("filter");
+
+    if (filter == "true") {
+        document.querySelector(".daily-button").textContent = "All time";
+    } else {
+        document.querySelector(".daily-button").textContent = "Daily";
     }
 }
 
@@ -133,7 +156,7 @@ function back(){
     window.location.href = "index.html";
 }
 getBoard();
-
+init();
 
 const wpm = document.querySelector(".Wpm");
 const cpm = document.querySelector(".Cpm");
@@ -207,3 +230,18 @@ document.querySelector(".rotate-button").addEventListener("click", function() {
         window.location.href = "board.html?type=rotate";
     }
 });
+
+document.querySelector(".daily-button").addEventListener("click" , function(){
+    const url = new URL(window.location);
+    const filter = url.searchParams.get("filter");
+
+    if (filter == "true") {
+        url.searchParams.set("filter", null);
+        const newUrl = url.toString();
+        window.location.href = newUrl; 
+    } else {
+        url.searchParams.set("filter", true);
+        const newUrl = url.toString();
+        window.location.href = newUrl; 
+    }
+})
