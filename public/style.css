@@ -301,7 +301,7 @@ button:active{
     border: 1px solid #ccc;
     background: none;
     padding: 12px 0;
-    width: 105px;
+    width: 50%;
     border-radius: 5px;
     font-weight: 700;
     display: block;
@@ -467,3 +467,19 @@ button:hover {
 i{
     margin-left: 2%;
 }
+
+.right #class{
+    margin-top: 25%;
+}
+.right select{    
+    width: 60%;
+    margin-top: 15%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 3%;
+}
+
+.right label{
+    margin-left: 5%;
+}
+

@@ -6,9 +6,10 @@ const wpmTag = document.querySelector(".wpm span");
 const cpmTag = document.querySelector(".cpm span");
 const tryAgainBtn = document.querySelector(".try-button");
 const returnBtn = document.querySelector(".return-button");
-const nameField = document.querySelector(".name-field");
 const popup = document.querySelector(".popup");
 const chart = document.querySelector(".chart");
+const classSelect = document.querySelector(".right #class");
+const classnoSelect = document.querySelector(".right #classno");
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
@@ -20,7 +21,7 @@ let idx2 = 0;
 let mistakes = 0;
 
 let timer , 
-maxTime = 60;
+maxTime = 1;
 timeLeft = maxTime;
 
 let playing = false;
@@ -241,7 +242,6 @@ function endGame(){
     document.removeEventListener("keydown" , () => inpField.focus());
     inpField.removeEventListener("input",initTyping);
     typingText.removeEventListener("click" , () => inpField.focus());
-    document.addEventListener("keydown" , () => nameField.focus());
     popup.classList.add("open-popup");
     document.querySelector(".popup-content").classList.add("open-popup-content");
     
@@ -259,9 +259,9 @@ function endGame(){
 
     var query;
     if(mode == "rotate"){
-        query = db.collection("data2").where("wpm", '>=',wpm);
+        query = db.collection("data4").where("wpm", '>=',wpm);
     }else{
-         query = db.collection("data1").where("wpm", '>=',wpm);
+         query = db.collection("data3").where("wpm", '>=',wpm);
     }
 
     let num;
@@ -293,16 +293,18 @@ function reset2(){
     const mode = url.searchParams.get('mode');
 
     if(mode =="rotate"){
-        db.collection("data2").add({
-            name : nameField.value,
+        db.collection("data4").add({
+            class : classSelect.value,
+            classno : classnoSelect.value,
             wpm : wpm,
             cpm : idx2-mistakes,
             mistakes : mistakes,
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
     }else{
-        db.collection("data1").add({
-            name : nameField.value,
+        db.collection("data3").add({
+            class : classSelect.value,
+            classno : classnoSelect.value,
             wpm : wpm,
             cpm : idx2-mistakes,
             mistakes : mistakes,
@@ -310,7 +312,6 @@ function reset2(){
         });
     }
 
-    document.removeEventListener("keydown" , () => nameField.focus());
     reset();
     
     document.querySelector(".popup-content").classList.add("close-popup-content");
@@ -323,7 +324,6 @@ function reset2(){
         document.querySelector(".chart").style.display = "none";
         document.body.classList.remove('blur');
       }, 1000);
-    nameField.value = "";
 }
 
 function result2(){
@@ -334,16 +334,18 @@ function result2(){
     const mode = url.searchParams.get('mode');
 
     if(mode =="rotate"){
-        db.collection("data2").add({
-            name : nameField.value,
+        db.collection("data4").add({
+            class : classSelect.value,
+            classno : classnoSelect.value,
             wpm : wpm,
             cpm : idx2-mistakes,
             mistakes : mistakes,
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         }).then(()=>{window.location.href = "board.html?type=rotate";});
     }else{
-        db.collection("data1").add({
-            name : nameField.value,
+        db.collection("data3").add({
+            class : classSelect.value,
+            classno : classnoSelect.value,
             wpm : wpm,
             cpm : idx2-mistakes,
             mistakes : mistakes,
@@ -357,31 +359,11 @@ function result(){
     window.location.href = "board.html";
 }
 
-function test2(){
-    if(nameField.value == ""){
-        nameField.style.borderColor = "#cb3439";
-        document.querySelector(".valid").style.display = "block";
-    }else{
-        nameField.style.borderColor = "#ccc";
-        document.querySelector(".valid").style.display = "none";
-        result2();
-    }
-}
 
-function test1(){
-    if(nameField.value == ""){
-        nameField.style.borderColor = "#cb3439";
-        document.querySelector(".valid").style.display = "block";
-    }else{
-        nameField.style.borderColor = "#ccc";
-        document.querySelector(".valid").style.display = "none";
-        reset2();
-    }
-}
 
 inpField.addEventListener("input",initTyping);
 tryAgainBtn.addEventListener("click" ,reset);
-returnBtn.addEventListener("click" ,test1);
+returnBtn.addEventListener("click" ,reset2);
 
 // randomParagraph();
 timeTag.innerHTML = maxTime;
@@ -451,3 +433,22 @@ buttons.forEach(button => {
 document.getElementById("github").addEventListener("click" , ()=>{
     window.location.href = "https://github.com/kotnid/typing-game";
 });
+
+// init select
+for(let i=1 ; i<=40 ; i+=1){
+    var optionElement = document.createElement("option");
+    optionElement.text = i;
+    optionElement.value = i;
+    classnoSelect.add(optionElement);
+}
+
+for(let i=1 ; i<=6 ; i+=1){
+    for(let j=65 ; j<=69 ; j+=1){
+        if(i==2 && j==69)continue;
+
+        var optionElement = document.createElement("option");
+        optionElement.text = i+String.fromCharCode(j);
+        optionElement.value = i+String.fromCharCode(j);
+        classSelect.add(optionElement);
+    }
+}

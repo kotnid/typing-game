@@ -2,7 +2,7 @@
 firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 
-var ref = db.collection("data1");
+var ref = db.collection("data3");
 
 function getBoard(){
     let rank = 1;
@@ -12,7 +12,7 @@ function getBoard(){
     const filter = url.searchParams.get("filter");
     
     if(type == "rotate"){
-        ref = db.collection("data2");
+        ref = db.collection("data4");
         document.querySelector(".rotate-text").style.display = "block";
     }
 
@@ -53,7 +53,7 @@ function getBoard(){
                     new_user.appendChild(new_date);
 
                     var new_name = document.createElement('div');
-                    new_name.textContent = doc.data()["name"];
+                    new_name.textContent = doc.data()["class"]+doc.data()["classno"].toString().padStart(2, '0');
                     new_user.appendChild(new_name);
 
                     new_row.appendChild(new_user);
@@ -112,7 +112,7 @@ function getBoard(){
                     new_user.appendChild(new_date);
 
                     var new_name = document.createElement('div');
-                    new_name.textContent = doc.data()["name"];
+                    new_name.textContent = doc.data()["class"]+doc.data()["classno"].toString().padStart(2, '0');
                     new_user.appendChild(new_name);
 
                     new_row.appendChild(new_user);
