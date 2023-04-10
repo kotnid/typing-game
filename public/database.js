@@ -17,7 +17,7 @@ function getBoard(){
     }
 
     if(sortby == null){
-        ref.orderBy("wpm","desc").orderBy("cpm","desc").orderBy("mistakes","asc").get().then(querySnapshot => {
+        ref.orderBy("cpm","desc").orderBy("mistakes","asc").orderBy("wpm","desc").get().then(querySnapshot => {
             querySnapshot.forEach(doc => {  
                 var new_row = document.createElement('div');
                 new_row.className = "row";
@@ -58,11 +58,6 @@ function getBoard(){
 
                     new_row.appendChild(new_user);
 
-                    var new_wpm = document.createElement('div');
-                    new_wpm.className = "Wpm"
-                    new_wpm.textContent = doc.data()["wpm"];
-                    new_row.appendChild(new_wpm);
-
                     var new_cpm = document.createElement('div');
                     new_cpm.className = "Cpm"
                     new_cpm.textContent = doc.data()["cpm"];
@@ -72,6 +67,11 @@ function getBoard(){
                     new_mistake.className = "Mistake"
                     new_mistake.textContent = doc.data()["mistakes"];
                     new_row.appendChild(new_mistake);
+
+                    var new_wpm = document.createElement('div');
+                    new_wpm.className = "Wpm"
+                    new_wpm.textContent = doc.data()["wpm"];
+                    new_row.appendChild(new_wpm);
 
 
                     document.querySelector(".content").appendChild(new_row);
@@ -117,11 +117,6 @@ function getBoard(){
 
                     new_row.appendChild(new_user);
 
-                    var new_wpm = document.createElement('div');
-                    new_wpm.className = "Wpm"
-                    new_wpm.textContent = doc.data()["wpm"];
-                    new_row.appendChild(new_wpm);
-
                     var new_cpm = document.createElement('div');
                     new_cpm.className = "Cpm"
                     new_cpm.textContent = doc.data()["cpm"];
@@ -132,6 +127,11 @@ function getBoard(){
                     new_mistake.textContent = doc.data()["mistakes"];
                     new_row.appendChild(new_mistake);
 
+
+                    var new_wpm = document.createElement('div');
+                    new_wpm.className = "Wpm"
+                    new_wpm.textContent = doc.data()["wpm"];
+                    new_row.appendChild(new_wpm);
 
                     document.querySelector(".content").appendChild(new_row);
                     rank++;
