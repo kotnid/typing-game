@@ -63,16 +63,15 @@ function getBoard(){
                     new_cpm.textContent = doc.data()["cpm"];
                     new_row.appendChild(new_cpm);
 
-                    var new_mistake = document.createElement('div');
-                    new_mistake.className = "Mistake"
-                    new_mistake.textContent = doc.data()["mistakes"];
-                    new_row.appendChild(new_mistake);
-
                     var new_wpm = document.createElement('div');
                     new_wpm.className = "Wpm"
                     new_wpm.textContent = doc.data()["wpm"];
                     new_row.appendChild(new_wpm);
 
+                    var new_mistake = document.createElement('div');
+                    new_mistake.className = "Mistake"
+                    new_mistake.textContent = doc.data()["mistakes"];
+                    new_row.appendChild(new_mistake);
 
                     document.querySelector(".content").appendChild(new_row);
                     rank++;
@@ -122,16 +121,15 @@ function getBoard(){
                     new_cpm.textContent = doc.data()["cpm"];
                     new_row.appendChild(new_cpm);
 
-                    var new_mistake = document.createElement('div');
-                    new_mistake.className = "Mistake"
-                    new_mistake.textContent = doc.data()["mistakes"];
-                    new_row.appendChild(new_mistake);
-
-
                     var new_wpm = document.createElement('div');
                     new_wpm.className = "Wpm"
                     new_wpm.textContent = doc.data()["wpm"];
                     new_row.appendChild(new_wpm);
+
+                    var new_mistake = document.createElement('div');
+                    new_mistake.className = "Mistake"
+                    new_mistake.textContent = doc.data()["mistakes"];
+                    new_row.appendChild(new_mistake);
 
                     document.querySelector(".content").appendChild(new_row);
                     rank++;
